@@ -33,92 +33,97 @@ public class TaskDefine {
      * 目标方法
      */
     private String targetMethod;
-    
-    
-    /**
+
+	/**
+	 * 任务名称
+	 */
+	private String taskDefineName;
+
+
+	/**
      * cron表达式
      */
     private String cronExpression;
-	
+
 	/**
 	 * 开始时间
 	 */
 	private Date startTime;
-	
+
 	/**
 	 * 两次任务启动时间之间的间隔时间（毫秒）
 	 */
 	private long period;
-	
+
 	/**
 	 * 上一次任务结束时间与下一次任务开始时间的间隔时间（毫秒）
 	 */
 	private long delay;
-	
+
 	/**
 	 * 参数
 	 */
 	private String params;
-	
+
 	/**
 	 * 类型
 	 */
 	private String type;
-	
+
 	/**
 	 * 后台显示参数，当前任务执行节点
 	 */
 	private String currentServer;
-	
+
 	/**
 	 * 后台显示参数，无业务内含
 	 */
 	private int runTimes;
-	
+
 	/**
 	 * 后台显示参数，无业务内含
 	 */
 	private long lastRunningTime;
-	
+
 	/**
 	 * 后台显示参数，无业务内含
 	 */
 	private String status = STATUS_RUNNING;
-	
+
 	/**
 	 * 执行比例
 	 */
 	private String percentage;
-	
+
 	/**
 	 * key的后缀
 	 */
 	private String extKeySuffix;
-	
+
 	//--------------------------------
 	// 分布式任务
 	//--------------------------------
-	
+
 	/**
 	 * 任务开始前调用方法
 	 */
 	private String beforeMethod;
-	
+
 	/**
 	 * 任务结束后调用方法
 	 */
 	private String afterMethod;
-	
+
 	/**
 	 * 线程数量
 	 */
 	private int threadNum = 1;
-	
+
 	/**
 	 * 分布式子任务后缀
 	 */
 	private String subSuffix;
-	
+
 	/**
 	 * spring bean名称
 	 * @return bean名称
@@ -142,7 +147,23 @@ public class TaskDefine {
 	public String getTargetMethod() {
 		return targetMethod;
 	}
-	
+
+	/**
+	 * 任务名称
+	 * @param taskName
+	 */
+	public void setTaskDefineName(String taskDefineName) {
+		this.taskDefineName = taskDefineName;
+	}
+
+	/**
+	 *
+	 * @return 任务名称
+	 */
+	public String getTaskDefineName() {
+		return taskDefineName;
+	}
+
 	/**
 	 * 任务方法显示方
 	 * @return
@@ -295,9 +316,11 @@ public class TaskDefine {
 	 */
 	public String getSingalKey(){
 		String result = null;
-		boolean notBlank = StringUtils.isNotBlank(getTargetBean()) && StringUtils.isNotBlank(getTargetMethod());
+		boolean notBlank = StringUtils.isNotBlank(getTargetBean())
+				&& StringUtils.isNotBlank(getTargetMethod())
+				&& StringUtils.isNotBlank(getTaskDefineName());
 		if(notBlank){
-			result = getTargetBean() + "#" + getTargetMethod();
+			result = getTargetBean() + "#" + getTargetMethod() + "#" + getTaskDefineName();
 		}
 		if(StringUtils.isNotBlank(extKeySuffix)){
 			result += "-" + extKeySuffix;
@@ -311,10 +334,10 @@ public class TaskDefine {
 	 */
 	public String getMutilMainKey(){
 		String result = null;
-		boolean notBlank = StringUtils.isNotBlank(getTargetBean()) 
-				&& StringUtils.isNotBlank(getBeforeMethod()) && StringUtils.isNotBlank(getAfterMethod());
+		boolean notBlank = StringUtils.isNotBlank(getTargetBean()) && StringUtils.isNotBlank(getBeforeMethod())
+				&& StringUtils.isNotBlank(getTaskDefineName()) && StringUtils.isNotBlank(getAfterMethod());
 		if(notBlank){
-			result = getTargetBean() + "#" + getBeforeMethod() + "!" + getAfterMethod();
+			result = getTargetBean() + "#" + getBeforeMethod() + "#" + getTaskDefineName() + "!" + getAfterMethod();
 		}
 		if(StringUtils.isNotBlank(extKeySuffix)){
 			result += "-" + extKeySuffix;
@@ -328,9 +351,11 @@ public class TaskDefine {
 	 */
 	public String getMutilSubKey(){
 		String result = null;
-		boolean notBlank = StringUtils.isNotBlank(getTargetBean()) && StringUtils.isNotBlank(getTargetMethod());
+		boolean notBlank = StringUtils.isNotBlank(getTargetBean())
+				&& StringUtils.isNotBlank(getTargetMethod())
+				&& StringUtils.isNotBlank(getTaskDefineName());
 		if(notBlank){
-			result = getTargetBean() + "#" + getTargetMethod();
+			result = getTargetBean() + "#" + getTargetMethod() + "#" + getTaskDefineName();
 		}
 		if(StringUtils.isNotBlank(extKeySuffix)){
 			result += "-" + extKeySuffix;
@@ -567,6 +592,9 @@ public class TaskDefine {
 			}else{
 				this.targetMethod = source.getTargetMethod();
 			}
+		}
+		if(StringUtils.isNotBlank(source.getTaskDefineName())){
+			this.taskDefineName = source.getTaskDefineName();
 		}
 		if(StringUtils.isNotBlank(source.getCronExpression())){
 			this.cronExpression = source.getCronExpression();

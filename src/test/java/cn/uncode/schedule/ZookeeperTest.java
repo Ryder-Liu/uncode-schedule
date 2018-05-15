@@ -89,11 +89,13 @@ public class ZookeeperTest {
 		taskDefine2.setTargetBean("taskObj");
 		taskDefine2.setStartTime(new Date(System.currentTimeMillis()+1000));
 		taskDefine2.setTargetMethod("print2");
+		taskDefine2.setTaskDefineName("task2");
 		ConsoleManager.addScheduleTask(taskDefine2);
 		//print3
 		TaskDefine taskDefine3 = new TaskDefine();
 		taskDefine3.setTargetBean("taskObj");
 		taskDefine3.setTargetMethod("print3");
+		taskDefine3.setTaskDefineName("task3");
 		taskDefine3.setStartTime(new Date(System.currentTimeMillis()+1000*2));
 		taskDefine3.setPeriod(1000);
 		ConsoleManager.addScheduleTask(taskDefine3);
@@ -101,6 +103,7 @@ public class ZookeeperTest {
 		TaskDefine taskDefine4 = new TaskDefine();
 		taskDefine4.setTargetBean("taskObj");
 		taskDefine4.setTargetMethod("print4");
+		taskDefine4.setTaskDefineName("task4");
 		taskDefine4.setPeriod(1000);
 		ConsoleManager.addScheduleTask(taskDefine4);
 
@@ -117,6 +120,7 @@ public class ZookeeperTest {
 		TaskDefine taskDefine5 = new TaskDefine();
 		taskDefine5.setTargetBean("simpleTask");
 		taskDefine5.setTargetMethod("print5");
+		taskDefine5.setTaskDefineName("task1");
 		taskDefine5.setPeriod(1000);
 		taskDefine5.setParams(new Gson().toJson(params));
 		ConsoleManager.addScheduleTask(taskDefine5);

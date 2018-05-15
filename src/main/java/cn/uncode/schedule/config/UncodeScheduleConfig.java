@@ -22,6 +22,7 @@ public class UncodeScheduleConfig{
 	
 	private List<String> targetBean;
 	private List<String> targetMethod;
+	private List<String> taskDefineName;
 	private List<String> cronExpression;
 	private List<String> startTime;
 	private List<String> period;
@@ -116,6 +117,16 @@ public class UncodeScheduleConfig{
 
 	public void setTargetMethod(List<String> targetMethod) {
 		this.targetMethod = targetMethod;
+	}
+
+
+	public List<String> getTaskDefineName() {
+		return taskDefineName;
+	}
+
+
+	public void setTaskDefineName(List<String> taskDefineName) {
+		this.taskDefineName = taskDefineName;
 	}
 
 

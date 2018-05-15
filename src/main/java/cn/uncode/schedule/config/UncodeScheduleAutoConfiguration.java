@@ -59,6 +59,12 @@ public class UncodeScheduleAutoConfiguration {
 					taskDefine.setTargetMethod(value);
 				}
 			}
+			if(uncodeScheduleConfig.getTaskDefineName() != null){
+				 String value = uncodeScheduleConfig.getTaskDefineName().get(i);
+				if(StringUtils.isNotBlank(value)){
+					taskDefine.setTaskDefineName(value);
+				}
+			}
 			if(uncodeScheduleConfig.getCronExpression() != null){
 				 String value = uncodeScheduleConfig.getCronExpression().get(i);
 				if(StringUtils.isNotBlank(value)){

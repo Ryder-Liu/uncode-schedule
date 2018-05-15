@@ -469,6 +469,7 @@ public class ScheduleDataManager4ZK implements IScheduleDataManager {
 				if(StringUtils.isNotEmpty(names[0])){
 					taskDefine.setTargetBean(names[0]);
 					taskDefine.setTargetMethod(names[1]);
+					taskDefine.setTaskDefineName(names[2]);
 				}
 				List<String> sers = this.getZooKeeper().getChildren(zkPath+"/"+child, false);
 				if(taskDefine != null && sers != null && sers.size() > 0){
