@@ -1,10 +1,9 @@
 package cn.uncode.schedule;
 
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
+import com.google.gson.Gson;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooDefs.Ids;
@@ -13,15 +12,20 @@ import org.apache.zookeeper.data.ACL;
 import org.apache.zookeeper.data.Id;
 import org.apache.zookeeper.server.auth.DigestAuthenticationProvider;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.uncode.schedule.core.TaskDefine;
 import cn.uncode.schedule.zk.ZKTools;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 /**
  * @author juny.ye
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath*:/applicationContext1.xml"})
 public class ZookeeperTest {
 	@Test
 	public void testCloseStatus() throws Exception {
@@ -69,7 +73,7 @@ public class ZookeeperTest {
 		zk.create("/uncode/schedule/task/taskObj#print", new byte[0], acls, CreateMode.PERSISTENT);
 		zk.getData("/uncode/schedule/task/taskObj#print", false, null);
 	}
-	
+
 	@Test
 	public void testCreateLocalTask() throws Exception {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext1.xml");
@@ -99,6 +103,23 @@ public class ZookeeperTest {
 		taskDefine4.setTargetMethod("print4");
 		taskDefine4.setPeriod(1000);
 		ConsoleManager.addScheduleTask(taskDefine4);
+
+	}
+
+	@Test
+	public void testCreateLocalTaskHiveParam() throws Exception {
+//		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext1.xml");
+		Thread.sleep(1000);
+		Map params = new HashMap();
+		params.put("name", "mals");
+		params.put("age", "26");
+		//print5
+		TaskDefine taskDefine5 = new TaskDefine();
+		taskDefine5.setTargetBean("simpleTask");
+		taskDefine5.setTargetMethod("print5");
+		taskDefine5.setPeriod(1000);
+		taskDefine5.setParams(new Gson().toJson(params));
+		ConsoleManager.addScheduleTask(taskDefine5);
 
 	}
 }

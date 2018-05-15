@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:task="http://www.springframework.org/schema/task"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.springframework.org/schema/task
-        http://www.springframework.org/schema/task/spring-task-3.0.xsd">
-        
-        
-	    <bean id="zkScheduleManager" class="cn.uncode.schedule.ZKScheduleManager"
-			init-method="init">
-			<property name="zkConfig">
-		           <map>
-		              <entry key="zkConnectString" value="127.0.0.1:2181" />
-		              <entry key="rootPath" value="/uncode/schedule" />
-		              <entry key="zkSessionTimeout" value="60000" />
-		              <entry key="userName" value="ScheduleAdmin" />
-		              <entry key="password" value="password" />
-		              <entry key="autoRegisterTask" value="true" />
-		           </map>
-			</property>
-		</bean>	
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	    <bean id="taskObj" class="cn.uncode.schedule.SimpleTask"/>
-<!-- 	
-	    <task:scheduled-tasks scheduler="zkScheduleManager">
-	        <task:scheduled ref="taskObj" method="print"  fixed-rate="5000"/>
-	    </task:scheduled-tasks>
- -->
+	<bean id="simpleTask" class="cn.uncode.schedule.SimpleTask"/>
+
+	<bean id="zkScheduleManager" class="cn.uncode.schedule.ZKScheduleManager"
+		  init-method="init">
+		<property name="zkConfig">
+			<map>
+				<entry key="uncode.schedule.zkConnect" value="localhost:2181" />
+				<entry key="uncode.schedule.rootPath" value="/testRootPath" />
+				<entry key="uncode.schedule.zkSessionTimeout" value="60000" />
+				<entry key="uncode.schedule.zkUsername" value="user1" />
+				<entry key="uncode.schedule.zkPassword" value="123456" />
+				<entry key="uncode.schedule.autoRegisterTask" value="true" />
+			</map>
+		</property>
+	</bean>
+
+	<!--
+            <task:scheduled-tasks scheduler="zkScheduleManager">
+                <task:scheduled ref="taskObj" method="print"  fixed-rate="5000"/>
+            </task:scheduled-tasks>
+     -->
 
 </beans>
