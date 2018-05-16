@@ -381,7 +381,8 @@ public class ScheduleDataManager4ZK implements IScheduleDataManager {
 		String zkPath = this.pathTask;
 		zkPath = zkPath + "/" + taskDefine.stringKey();
 		if(this.getZooKeeper().exists(zkPath, false) == null){
-			this.getZooKeeper().create(zkPath, null, this.zkManager.getAcl(), CreateMode.PERSISTENT);
+			ZKTools.createPath(this.getZooKeeper(), zkPath, CreateMode.PERSISTENT, this.zkManager.getAcl());
+//			this.getZooKeeper().create(zkPath, null, this.zkManager.getAcl(), CreateMode.PERSISTENT);
 		}
 		byte[] data = this.getZooKeeper().getData(zkPath, null, null);
 		if(null == data || data.length == 0){
