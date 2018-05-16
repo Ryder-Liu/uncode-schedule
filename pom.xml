@@ -14,7 +14,7 @@
 	<version>1.1.0</version>
 	<packaging>jar</packaging>
 
-	<name>uncode-schedule</name>
+<!--	<name>uncode-schedule</name>
 	<description>Job scheduler.</description>
 	<url>https://git.oschina.net/uncode/uncode-schedule</url>
 
@@ -38,7 +38,7 @@
 		<connection>scm:git:git@git.oschina.net:uncode/uncode-schedule.git</connection>
 		<developerConnection>scm:git:git@git.oschina.net:uncode/uncode-schedule.git</developerConnection>
 		<url>git@git.oschina.net:uncode/uncode-schedule.git</url>
-	</scm>
+	</scm>-->
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -168,7 +168,7 @@
 	</dependencies>
 
 
-	<distributionManagement>
+<!--	<distributionManagement>
 		<snapshotRepository>
 			<id>uncode</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -177,7 +177,7 @@
 			<id>uncode</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
-	</distributionManagement>
+	</distributionManagement>-->
 
 	<build>
 		<plugins>
@@ -191,6 +191,22 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${springboot.version}</version>
+				<configuration>
+					<mainClass>cn.uncode.schedule.UncodeScheduleApplication</mainClass>
+					<layout>ZIP</layout>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+<!--	       <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
@@ -228,18 +244,18 @@
 						<link>http://docs.oracle.com/javase/7/docs/api</link>
 					</links>
 				</configuration>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 
 
-	<profiles>
+<!--	<profiles>
 		<profile>
 			<id>release</id>
 			<build>
 				<plugins>
 
-					<!-- Compiler -->
+					&lt;!&ndash; Compiler &ndash;&gt;
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
@@ -249,7 +265,7 @@
 							<target>1.7</target>
 						</configuration>
 					</plugin>
-					<!-- Source -->
+					&lt;!&ndash; Source &ndash;&gt;
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
@@ -263,7 +279,7 @@
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Javadoc -->
+					&lt;!&ndash; Javadoc &ndash;&gt;
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
@@ -277,7 +293,7 @@
 							</execution>
 						</executions>
 					</plugin>
-					<!-- GPG -->
+					&lt;!&ndash; GPG &ndash;&gt;
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
@@ -305,5 +321,5 @@
 				</repository>
 			</distributionManagement>
 		</profile>
-	</profiles>
+	</profiles>-->
 </project>
