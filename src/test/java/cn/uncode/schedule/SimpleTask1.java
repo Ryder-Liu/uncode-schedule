@@ -11,7 +11,7 @@ import java.util.Map;
  * @author juny.ye
  */
 @Component
-public class SimpleTask {
+public class SimpleTask1 {
 
     private static int i = 0;
 

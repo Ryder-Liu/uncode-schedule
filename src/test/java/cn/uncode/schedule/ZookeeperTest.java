@@ -13,6 +13,7 @@ import org.apache.zookeeper.data.Id;
 import org.apache.zookeeper.server.auth.DigestAuthenticationProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.uncode.schedule.core.TaskDefine;
@@ -25,7 +26,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author juny.ye
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:/applicationContext1.xml"})
+//@ContextConfiguration(locations = {"classpath*:/applicationContext1.xml"})
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ZookeeperTest {
 	@Test
 	public void testCloseStatus() throws Exception {
@@ -113,16 +115,16 @@ public class ZookeeperTest {
 	public void testCreateLocalTaskHiveParam() throws Exception {
 //		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext1.xml");
 		Thread.sleep(1000);
-		Map params = new HashMap();
+		Map<String, String> params = new HashMap();
 		params.put("name", "chenghongchao");
 		params.put("age", "28");
 		//print5
 		TaskDefine taskDefine5 = new TaskDefine();
 		taskDefine5.setTargetBean("simpleTask");
-		taskDefine5.setTargetMethod("print5");
-		taskDefine5.setTaskDefineName("task2");
-		taskDefine5.setPeriod(1000);
-		taskDefine5.setParams(new Gson().toJson(params));
+		taskDefine5.setTargetMethod("print3");
+		taskDefine5.setTaskDefineName("task3");
+		taskDefine5.setPeriod(10000);
+//		taskDefine5.setParams(new Gson().toJson(params));
 		ConsoleManager.addScheduleTask(taskDefine5);
 
 	}

@@ -440,7 +440,7 @@ public class ScheduleDataManager4ZK implements IScheduleDataManager {
 			zkPath = zkPath + "/" + taskDefine.stringKey();
 			if(this.getZooKeeper().exists(zkPath, false) != null){
 				List<String> names = getAllChildren(zkPath);
-				if(names != null && names.size() > 0){
+				if(!names.isEmpty()){
 					for(String name:names){
 						this.getZooKeeper().delete(name, -1);
 					}
@@ -458,6 +458,19 @@ public class ScheduleDataManager4ZK implements IScheduleDataManager {
 		if(this.getZooKeeper().exists(zkPath,false) != null){
 			List<String> childes = this.getZooKeeper().getChildren(zkPath, false);
 			for(String child:childes){
+				if ("null".equals(child)) {
+					String newZkPath = zkPath + "/" + child;
+					List<String> names = getAllChildren(newZkPath);
+					if(!names.isEmpty()){
+						for(String name:names){
+							this.getZooKeeper().delete(name, -1);
+						}
+					}
+					if (this.getZooKeeper().exists(newZkPath,false) != null) {
+						this.getZooKeeper().delete(newZkPath, -1);
+					}
+					continue;
+				}
 				byte[] data = this.getZooKeeper().getData(zkPath+"/"+child, null, null);
 				TaskDefine taskDefine = null;
 				if (null != data) {
