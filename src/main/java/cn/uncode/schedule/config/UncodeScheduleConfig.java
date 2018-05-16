@@ -1,5 +1,6 @@
 package cn.uncode.schedule.config;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,8 +96,8 @@ public class UncodeScheduleConfig{
 	public List<String> getIpBlackList() {
 		return ipBlackList;
 	}
-	public void setIpBlackList(List<String> ipBlackList) {
-		this.ipBlackList = ipBlackList;
+	public void setIpBlackList(String ipBlackList) {
+		this.ipBlackList = StringUtils.isBlank(ipBlackList)? null : Arrays.asList(ipBlackList.split(","));
 	}
 
 
@@ -105,8 +106,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setTargetBean(List<String> targetBean) {
-		this.targetBean = targetBean;
+	public void setTargetBean(String targetBean) {
+		this.targetBean = StringUtils.isBlank(targetBean)? null : Arrays.asList(targetBean.split(","));
 	}
 
 
@@ -115,8 +116,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setTargetMethod(List<String> targetMethod) {
-		this.targetMethod = targetMethod;
+	public void setTargetMethod(String targetMethod) {
+		this.targetMethod = StringUtils.isBlank(targetMethod)? null : Arrays.asList(targetMethod.split(","));
 	}
 
 
@@ -125,8 +126,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setTaskDefineName(List<String> taskDefineName) {
-		this.taskDefineName = taskDefineName;
+	public void setTaskDefineName(String taskDefineName) {
+		this.taskDefineName = StringUtils.isBlank(taskDefineName)? null : Arrays.asList(taskDefineName.split(","));
 	}
 
 
@@ -135,8 +136,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setCronExpression(List<String> cronExpression) {
-		this.cronExpression = cronExpression;
+	public void setCronExpression(String cronExpression) {
+		this.cronExpression = StringUtils.isBlank(cronExpression)? null : Arrays.asList(cronExpression.split(","));
 	}
 
 
@@ -145,8 +146,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setStartTime(List<String> startTime) {
-		this.startTime = startTime;
+	public void setStartTime(String startTime) {
+		this.startTime = StringUtils.isBlank(startTime)? null : Arrays.asList(startTime.split(","));
 	}
 
 
@@ -155,8 +156,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setPeriod(List<String> period) {
-		this.period = period;
+	public void setPeriod(String period) {
+		this.period = StringUtils.isBlank(period)? null : Arrays.asList(period.split(","));
 	}
 
 
@@ -165,8 +166,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setDelay(List<String> delay) {
-		this.delay = delay;
+	public void setDelay(String delay) {
+		this.delay = StringUtils.isBlank(delay)? null : Arrays.asList(delay.split(","));
 	}
 
 
@@ -175,8 +176,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setParams(List<String> params) {
-		this.params = params;
+	public void setParams(String params) {
+		this.params = StringUtils.isBlank(params)? null : Arrays.asList(params.split(","));
 	}
 
 
@@ -185,8 +186,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setType(List<String> type) {
-		this.type = type;
+	public void setType(String type) {
+		this.type = StringUtils.isBlank(type)? null : Arrays.asList(type.split(","));
 	}
 
 
@@ -195,8 +196,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setExtKeySuffix(List<String> extKeySuffix) {
-		this.extKeySuffix = extKeySuffix;
+	public void setExtKeySuffix(String extKeySuffix) {
+		this.extKeySuffix = StringUtils.isBlank(extKeySuffix)? null : Arrays.asList(extKeySuffix.split(","));
 	}
 
 
@@ -205,8 +206,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setBeforeMethod(List<String> beforeMethod) {
-		this.beforeMethod = beforeMethod;
+	public void setBeforeMethod(String beforeMethod) {
+		this.beforeMethod = StringUtils.isBlank(beforeMethod)? null : Arrays.asList(beforeMethod.split(","));
 	}
 
 
@@ -215,8 +216,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setAfterMethod(List<String> afterMethod) {
-		this.afterMethod = afterMethod;
+	public void setAfterMethod(String afterMethod) {
+		this.afterMethod = StringUtils.isBlank(afterMethod)? null : Arrays.asList(afterMethod.split(","));
 	}
 
 	public List<String> getThreadNum() {
@@ -224,8 +225,8 @@ public class UncodeScheduleConfig{
 	}
 
 
-	public void setThreadNum(List<String> threadNum) {
-		this.threadNum = threadNum;
+	public void setThreadNum(String threadNum) {
+		this.threadNum = StringUtils.isBlank(threadNum)? null : Arrays.asList(threadNum.split(","));
 	}
 
 	
