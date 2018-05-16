@@ -114,16 +114,17 @@ public class ZookeeperTest {
 //		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext1.xml");
 		Thread.sleep(1000);
 		Map params = new HashMap();
-		params.put("name", "mals");
-		params.put("age", "26");
+		params.put("name", "chenghongchao");
+		params.put("age", "28");
 		//print5
 		TaskDefine taskDefine5 = new TaskDefine();
 		taskDefine5.setTargetBean("simpleTask");
 		taskDefine5.setTargetMethod("print5");
-		taskDefine5.setTaskDefineName("task1");
+		taskDefine5.setTaskDefineName("task2");
 		taskDefine5.setPeriod(1000);
 		taskDefine5.setParams(new Gson().toJson(params));
 		ConsoleManager.addScheduleTask(taskDefine5);
 
 	}
+
 }

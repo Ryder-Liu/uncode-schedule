@@ -1,5 +1,8 @@
 package cn.uncode.schedule.test;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,6 +66,35 @@ public class SimpleTask {
         System.out.println("print<<5>>:"+i+"-"+params.get("name") + "-" + params.get("age"));i++;
         System.out.println("=========== end !=========");
     }
+
+    public void print6(String param) {
+        Map params = (Map) JSON.parse(param);
+        File file = null;
+        FileWriter fw = null;
+        file = new File("D:\\test123.txt");
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            fw = new FileWriter(file);
+            fw.write(param+i+",\r\n");//向文件中写内容
+            fw.flush();
+            System.out.println("写数据成功！");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally{
+            if(fw != null){
+                try {
+                    fw.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
     public List<Map<String, String>> before(){
         List<Map<String, String>> list = new ArrayList<>();
