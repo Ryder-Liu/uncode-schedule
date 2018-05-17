@@ -48,22 +48,47 @@
 	
 ## 基于Spring Boot的配置
 
-1 application.properties
+1 application.yml
 
-	uncode.schedule.zkConnect=127.0.0.1:2181
-	uncode.schedule.rootPath=/uncode/schedule
-	uncode.schedule.zkSessionTimeout=60000
-	uncode.schedule.zkUsername=ScheduleAdmin
-	uncode.schedule.zkPassword=password
-	uncode.schedule.ipBlackList[0]=127.0.0.2 #可选
-	uncode.schedule.ipBlackList[1]=127.0.0.3 #可选
-	
-	uncode.schedule.quartzBean[0]=simpleTask  #可选
-	uncode.schedule.quartzMethod[0]=print1    #可选
-	uncode.schedule.quartzCronExpression[0]=0/3 * * * * ? #可选
-	uncode.schedule.quartzBean[1]=simpleTask2 #可选
-	uncode.schedule.quartzMethod[1]=print12   #可选
-	uncode.schedule.quartzCronExpression[1]=0/5 * * * * ? #可选
+    uncode:
+      schedule:
+        zk-connect: localhost:2181
+        root-path: /testRootPath
+        zk-session-timeout: 60000
+        zk-username: user1
+        zk-password: 123456
+        #ip黑名单，可配置多个，逗号分隔 （可选）
+        ip-black-list:
+        #初始化任务，可配置多个，逗号分隔 （可选）
+        target-bean: simpleTask
+        target-method: print2
+        task-define-name: taskLiulh
+        period: 10000
+        cron-expression:
+        start-time:
+        delay:
+        params:
+        type:
+        ext-key-suffix:
+        before-method:
+        after-method:
+        thread-num:
+        
+    原application.properties配置，已弃用    
+        uncode.schedule.zkConnect=127.0.0.1:2181
+        uncode.schedule.rootPath=/uncode/schedule
+        uncode.schedule.zkSessionTimeout=60000
+        uncode.schedule.zkUsername=ScheduleAdmin
+        uncode.schedule.zkPassword=password
+        uncode.schedule.ipBlackList[0]=127.0.0.2 #可选
+        uncode.schedule.ipBlackList[1]=127.0.0.3 #可选
+        
+        uncode.schedule.quartzBean[0]=simpleTask  #可选
+        uncode.schedule.quartzMethod[0]=print1    #可选
+        uncode.schedule.quartzCronExpression[0]=0/3 * * * * ? #可选
+        uncode.schedule.quartzBean[1]=simpleTask2 #可选
+        uncode.schedule.quartzMethod[1]=print12   #可选
+        uncode.schedule.quartzCronExpression[1]=0/5 * * * * ? #可选
 	
 2 启动类
 
