@@ -38,25 +38,18 @@ public class ConsoleManager {
      * 添加任务
      * @param taskDefine 任务定义
      */
-    public static void addScheduleTask(TaskDefine taskDefine) {
-        try {
-        	log.info("添加任务："+taskDefine.getSingalKey());
-			ConsoleManager.getScheduleManager().getScheduleDataManager().addTask(taskDefine);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-		}
+    public static void addScheduleTask(TaskDefine taskDefine) throws Exception {
+        log.info("添加任务："+taskDefine.getSingalKey());
+        ConsoleManager.getScheduleManager().getScheduleDataManager().addTask(taskDefine);
     }
     
     /**
      * 删除任务
      * @param taskDefine 任务定义
      */
-    public static void delScheduleTask(TaskDefine taskDefine) {
-        try {
-			ConsoleManager.scheduleManager.getScheduleDataManager().delTask(taskDefine);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-		}
+    public static void delScheduleTask(TaskDefine taskDefine) throws Exception {
+        log.info("删除任务："+taskDefine.getSingalKey());
+        ConsoleManager.scheduleManager.getScheduleDataManager().delTask(taskDefine);
     }
     
     /**
@@ -77,26 +70,19 @@ public class ConsoleManager {
      * 修改任务
      * @param taskDefine 任务定义
      */
-    public static void updateScheduleTask(TaskDefine taskDefine) {
-        try {
-			ConsoleManager.scheduleManager.getScheduleDataManager().updateTask(taskDefine);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-		}
+    public static void updateScheduleTask(TaskDefine taskDefine) throws Exception {
+        log.info("修改任务："+taskDefine.getSingalKey());
+        ConsoleManager.scheduleManager.getScheduleDataManager().updateTask(taskDefine);
     }
     
     /**
      * 查询所有任务列表
      * @return 任务列表
      */
-    public static List<TaskDefine> queryScheduleTask() {
+    public static List<TaskDefine> queryScheduleTask() throws Exception {
     	List<TaskDefine> taskDefines = new ArrayList<TaskDefine>();
-        try {
-			List<TaskDefine> tasks = ConsoleManager.getScheduleManager().getScheduleDataManager().selectTask();
-			taskDefines.addAll(tasks);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-		}
+        List<TaskDefine> tasks = ConsoleManager.getScheduleManager().getScheduleDataManager().selectTask();
+        taskDefines.addAll(tasks);
         return taskDefines;
     }
     

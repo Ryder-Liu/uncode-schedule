@@ -360,7 +360,11 @@ public class ManagerServlet extends HttpServlet{
 				if(dels.length > 3){
 					taskDefine.setExtKeySuffix(dels[3]);
 				}
-				ConsoleManager.delScheduleTask(taskDefine);
+				try {
+					ConsoleManager.delScheduleTask(taskDefine);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				response.sendRedirect(request.getSession().getServletContext().getContextPath()+"/uncode/schedule");
 			}else if(StringUtils.isNotEmpty(start)){
 				TaskDefine taskDefine = new TaskDefine();
@@ -372,7 +376,11 @@ public class ManagerServlet extends HttpServlet{
 					taskDefine.setExtKeySuffix(dels[3]);
 				}
 				taskDefine.setStatus(TaskDefine.STATUS_RUNNING);
-				ConsoleManager.updateScheduleTask(taskDefine);
+				try {
+					ConsoleManager.updateScheduleTask(taskDefine);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				response.sendRedirect(request.getSession().getServletContext().getContextPath()+"/uncode/schedule");
 			}else if(StringUtils.isNotEmpty(stop)){
 				TaskDefine taskDefine = new TaskDefine();
@@ -384,7 +392,11 @@ public class ManagerServlet extends HttpServlet{
 					taskDefine.setExtKeySuffix(dels[3]);
 				}
 				taskDefine.setStatus(TaskDefine.STATUS_STOP);
-				ConsoleManager.updateScheduleTask(taskDefine);
+				try {
+					ConsoleManager.updateScheduleTask(taskDefine);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				response.sendRedirect(request.getSession().getServletContext().getContextPath()+"/uncode/schedule");
 			}else if(StringUtils.isNotEmpty(bean) && StringUtils.isNotEmpty(method) && StringUtils.isNotEmpty(taskDefineName)){
 				TaskDefine taskDefine = new TaskDefine();
@@ -454,7 +466,11 @@ public class ManagerServlet extends HttpServlet{
 					taskDefine.setExtKeySuffix(extKeySuffix);
 				}
 				if(StringUtils.isNotEmpty(cronExpression) || StringUtils.isNotEmpty(period) || null != taskDefine.getStartTime()){
-					ConsoleManager.addScheduleTask(taskDefine);
+					try {
+						ConsoleManager.addScheduleTask(taskDefine);
+					} catch (Exception e) {
+
+					}
 				}
 				response.sendRedirect(request.getSession().getServletContext().getContextPath()+"/uncode/schedule");
 			}

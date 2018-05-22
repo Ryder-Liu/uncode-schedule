@@ -129,4 +129,14 @@ public class ZookeeperTest {
 
 	}
 
+	@Test
+	public void testInterface () throws Exception {
+		TaskDefine taskDefine5 = new TaskDefine();
+		taskDefine5.setTargetBean("JDBCToESTask");
+		taskDefine5.setTargetMethod("JDBCSinkES");
+		taskDefine5.setTaskDefineName("testInterface");
+		taskDefine5.setPeriod(10000);
+//		taskDefine5.setParams(new Gson().toJson(params));
+		ConsoleManager.addScheduleTask(taskDefine5);
+	}
 }
